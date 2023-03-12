@@ -1,0 +1,7 @@
+[user]
+	email = carloseabade@gmail.com
+	name = Carlos Abade
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
