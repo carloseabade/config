@@ -37,5 +37,6 @@ slstatus &
 ~/.fehbg &
 xcompmgr -c &
 unclutter --start-hidden --timeout 1 --ignore-buttons 4,5,6,7 &
+xflux -l -25.094700 -g -50.163160 &
 export _JAVA_AWT_WM_NONREPARENTING=1 #FIX: Android Studio
 exec ~/start-dwm

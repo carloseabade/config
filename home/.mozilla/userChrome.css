@@ -11,7 +11,7 @@
 .tabbrowser-tab:hover > .tab-stack > .tab-background:not([selected=true], [multiselected]) {
   background-color: unset !important;
 }
-#new-tab-button, #alltabs-button, #scrollbutton-up, #scrollbutton-down {
+#tabs-newtab-button, #new-tab-button, #alltabs-button, #scrollbutton-up, #scrollbutton-down {
   display: none;
 }
 
