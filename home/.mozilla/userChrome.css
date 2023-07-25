@@ -1,0 +1,40 @@
+.tabbrowser-tab {
+  min-height: unset !important;
+}
+#tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
+  height: unset !important;
+}
+.tab-content {
+  padding: 0 0.3em !important;
+}
+#TabsToolbar #firefox-view-button:hover:not([open]) > .toolbarbutton-icon,
+.tabbrowser-tab:hover > .tab-stack > .tab-background:not([selected=true], [multiselected]) {
+  background-color: unset !important;
+}
+#new-tab-button, #alltabs-button, #scrollbutton-up, #scrollbutton-down {
+  display: none;
+}
+
+
+#reader-mode-button, #star-button-box, #back-button, #forward-button, #unified-extensions-button {
+  display: none;
+}
+#urlbar-results {
+  text-align: right !important;
+}
+#urlbar-input {
+  text-align: center !important;
+}
+#PanelUI-menu-button {
+  padding-right: 0 !important;
+}
+#urlbar-container, #search-container {
+  margin-inline: unset !important;
+  padding: 0 !important;
+}
+#urlbar-background {
+  border: unset !important;
+}
+#urlbar-input-container {
+  border: unset !important;
+}
