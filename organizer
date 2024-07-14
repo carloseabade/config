@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+FILES=$(find . -type f -not -path "./.git/*" -not -name "organizer")
+
+: ${USER:?is not set}
+
+_diff() {
+  diff -u $1 $2
+}
+
+#_decrypt() {
+  #FILE_PATH=$1
+  #OUTPUT_FILE_PATH=${FILE_PATH/.gpg/}
+  #gpg --decrypt --recipient carloseabade@gmail.com --output $OUTPUT_FILE_PATH $FILE_PATH
+  #echo $OUTPUT_FILE_PATH
+#}
+
+_diff_handler() {
+  FILE_PATH=$1
+  FILE_PATH_WITHOUT_DOT=${FILE_PATH:1}
+
+  #if [[ $FILE_PATH == *.gpg]]
+  #then
+    #FILE_PATH=$(_decrypt $FILE_PATH)
+  #fi
+
+  case $FILE_PATH in
+    *.gpg) : ;;
+    ./home/USER/*) _diff "${FILE_PATH_WITHOUT_DOT/USER/$USER}" "${FILE_PATH}" ;;
+    *) _diff "${FILE_PATH_WITHOUT_DOT}" "${FILE_PATH}" ;;
+  esac
+}
+
+_check_diff() {
+  for f in $FILES
+  do
+    RESPOSNSE="Y"
+    _diff_handler $f || read -p "Continue? [Y] " RESPONSE
+    if [[ ${RESPONSE,,} != "" ]]
+    then
+      exit 0
+    fi
+  done
+}
+
+_help() {
+  echo "Usage: $0 [OPTION]"
+  echo ""
+  echo "OPTION"
+  echo "  diff  Checks for diff on all files from this repository"
+  echo "  pull  Pulls from remote repository"
+}
+
+_pull_from_remote() {
+  git pull --ff-only origin main
+}
+
+if [[ "$#" -ne 1 ]]
+then
+  _help
+  exit 0
+fi
+
+case $1 in
+  diff) _check_diff ;;
+  pull) _pull_from_remote ;;
+  *) _help && exit 0 ;;
+esac
