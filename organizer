@@ -36,7 +36,7 @@ _diff_handler() {
 _check_diff() {
   for f in $FILES
   do
-    RESPOSNSE="Y"
+    RESPONSE="Y"
     _diff_handler $f || read -p "Continue? [Y] " RESPONSE
     if [[ ${RESPONSE,,} != "" ]]
     then
