@@ -1,68 +1,94 @@
-let mapleader = ","
-"Set fuzzy find
-set path=**
-"Set no compatible mode
+" vim:foldmethod=marker
+
+"vim-plug {{{
+call plug#begin('~/.vim/plugged')
+	Plug 'kien/ctrlp.vim'
+	Plug 'vim-airline/vim-airline'
+	Plug 'morhetz/gruvbox'
+	Plug 'hashivim/vim-terraform'
+	Plug 'machakann/vim-highlightedyank'
+call plug#end()
+"}}}
+
+"Options {{{
+let mapleader=" "
+set path+=**
 set nocompatible
-"Show menu for command-line completion
 set wildmenu
-"Show line numbers
 set number
-"Show relative line numbers
 set relativenumber
-"Copy indent from current line when starting a new line
 set autoindent
-"Expand <Tab> into spaces
 set expandtab
-"A <Tab> in front of a line inserts blanks according to 'shiftwidth'
 set smarttab
-"Number of spaces to use for each step of (auto)indent
 set shiftwidth=2
-"Number of spaces that a <Tab> counts for
 set tabstop=2
-"Turn on syntax highlighting
 syntax on
-"Support file type detection
 filetype plugin indent on
-"Disable word wrapping
-set nowrap
-"Highlight the first string while typing the search
 set incsearch
-"Minimal number of screen lines to keep above and below the curso
-set scrolloff=999
-"vertical column guides
-set colorcolumn=80
-"Allows to switch from a not saved buffer
+set hlsearch
 set hidden
-"Word wrap
 set wrap
-
-colorscheme habamax
-
 set showcmd
+"}}}
 
-"filetype plugin on
+"Mappings {{{
+nnoremap : ;
+nnoremap ; :
+nnoremap <leader>sf :CtrlPCurWD<cr>
+nnoremap <leader>sb :CtrlPBuffer<cr>
+nnoremap <leader>s/ :CtrlPLine<cr>
+nnoremap <leader>sg :CtrlPSample<cr>
+nnoremap <silent> <leader>so :w<cr>:so<cr>:echo "Sourced"<cr>
+nnoremap <leader>/ :set nohlsearch!<cr>
+nnoremap <silent> <leader>qo :copen<cr>
+nnoremap <silent> <leader>qc :cclose<cr>
+nnoremap <silent> <leader>qj :cnext<cr>
+nnoremap <silent> leader>qk :cprev<cr>
+"}}}
 
-"vim-go config
-set autowrite
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go nmap <leader>t  <Plug>(go-test)
-autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+let g:ctrlp_extensions = ['sample']
+command! CtrlPSample call ctrlp#init(ctrlp#sample#id())
 
-"YouCompleteMe config
-set completeopt-=preview
+"gruvbox setup {{{
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+autocmd vimenter * ++nested colorscheme gruvbox
+set background=dark
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
+"}}}
 
-"Save file
-map <leader>w :w<CR>
-"Save and close file
-map <leader>wq :wq<CR>
-"Close file without saving it
-map <leader>qq :q!<CR>
-"Go to next buffer
-map <leader>bn :bn<CR>
-"Go to previous buffer
-map <leader>bp :bp<CR>
-"List buffers
-map <leader>bl :buffers<CR>
-"Close all other buffers
-map <leader>o <C-w>o
+"vim-highlightedyank setup {{{
+let g:highlightedyank_highlight_duration = 100
+"}}}
+
+" Map a key (e.g., <leader>p) to trigger the prompt and echo the input
+nnoremap <leader>p :call PromptAndEcho()<CR>
+
+" Function to prompt the user and echo the input
+function! PromptAndEcho()
+  echohl SpecialKey
+  let user_input = input(">>> ")
+  echohl None
+  redraw!
+
+  if user_input == ""
+    return
+  endif
+
+  execute 'silent grep! -r ' . shellescape(user_input) . ' .' | copen
+endfunction
+
