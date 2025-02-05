@@ -1,0 +1,42 @@
+https://cultura.pontagrossa.pr.gov.br/feed/ culture "~Cultura - Prefeitura Ponta Grossa"
+https://www.pontagrossa.pr.gov.br/feed/ news "~Notícias - Prefeitura Ponta Grossa"
+https://agenciagov.ebc.com.br/noticias/RSS news "~Notícias - Agencia GOV"
+https://www.metropoles.com/feed news "~Notícias - Metrópoles"
+https://www.poder360.com.br/feed/ news "~Notícias - Poder360"
+http://www.bbc.co.uk/portuguese/index.xml news "~Notícias - BBC News Brasil"
+https://www.revistaoeste.com/rss news "~Notícias - Revista Oeste"
+https://www.cnnbrasil.com.br/feed/ news "~Notícias - CNN Brasil"
+https://www.gazetadopovo.com.br/feed/rss/republica.xml news "~Notícias - Gazeta do Povo (República)"
+https://www.gazetadopovo.com.br/feed/rss/opiniao.xml news "~Notícias - Gazeta do Povo (Opnião)"
+https://www.gazetadopovo.com.br/feed/rss/mundo.xml news "~Notícias - Gazeta do Povo (Mundo)"
+https://redenacionalderadio.ebc.com.br/programas/a-voz-do-brasil-download/a-voz-do-brasil-download/RSS news "~Notícias - A Voz Do Brasil"
+https://archlinux.org/feeds/news/ blog "~Blog - Arch Linux"
+https://www.docker.com/feed/ blog "~Blog - Docker"
+https://kubernetes.io/feed.xml blog "~Blog - Kubernetes"
+https://www.linuxfoundation.org/blog/rss.xml blog "~Blog - Linux Foundation"
+https://go.dev/blog/feed.atom blog "~Blog - GoLang"
+https://aws.amazon.com/blogs/aws/feed/ blog "~Blog - Amazon Web Services"
+https://github.blog/feed/ blog "~Blog - GitHub"
+https://www.tabnews.com.br/recentes/rss blog "~Blog - TabNews"
+https://feeds.twit.tv/floss.xml podcast "~Podcast - FLOSS Weekly"
+https://changelog.com/master/feed podcast "~Podcast - Changelog Master"
+https://www.se-radio.net/feed/podcast/ podcast "~Podcast - Software Engineering Radio"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCib793mnUOhWymCh2VJKplQ youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCoOjmHXV2STS3l5yJlFGoig youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UC0NErq0RhP51iXx64ZmyVfg youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCzOGJclZQvPVgYZIwERsf5g youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UC9-y-6csu5WGm29I7JiwpnA youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCwRXb5dUK4cvsHbx-rGzSgw youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCD4EOyXKjfDUhCI6jlOZZYQ youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCCYb8bp7v9maNk5n3nfw-Lg youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCU5JicSrEM5A63jkJ2QvGYw youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UC8butISFwT-Wl7EV0hUK0BQ youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UClYb9NpXnRemxYoWbcYANsA youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCkqOofjb7nl6V8vXrIbGtiQ youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UClz3DneoYlccluy4hBlx86Q youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdngmbVKX1Tgre699-XLlUA youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCAuUUnT6oDeKwE6v1NGQxug youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCfX55Sx5hEFjoC3cNs6mCUQ youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCJbPGzawDH1njbqV-D5HqKw youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UC29ju8bIPH5as8OGnQzwJyA youtube
