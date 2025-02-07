@@ -1,0 +1,31 @@
+#
+# Default urlview(1) configuration file
+#
+# You can call urlview from (neo)mutt by pressing ^B:
+#   macro index,pager,attach,compose \cb |urlview<Enter>
+# this is part of the default configuration.
+#
+# You can call urlview from tin by pressing |, a[rticle], then "urlview".
+
+# regular expression to use to match URLs
+#REGEXP ((http|https|ftp|gopher|gemini|mailto):(//)?[^ <>"\t]*|(www|ftp)[0-9]?\.[-a-z0-9.]+)[^ .,;\t\n\r<">\):]?[^, <>"\t]*[^ .,;\t\n\r<">\):]
+
+# program to invoke for selected URL
+# if this is unset, it'll be overridden by $BROWSER
+COMMAND webview
+
+# argument:    run         sh -c 'COMMAND URL'
+# environment: run URL=URL sh -c 'COMMAND'
+# pipe:        run         sh -c 'COMMAND' <<<URL
+#
+# xclip or xclip -selection clipboard may be a good choice for pipe.
+#VIA argument
+
+# set to yes to edit a URL before opening it
+#EDIT no
+
+# set to yes to enable menu wraparound
+#WRAP no
+
+# set to no to disable mouse handling
+#MOUSE yes

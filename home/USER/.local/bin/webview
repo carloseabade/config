@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ext="${1##*.}"
+mpvFiles="mkv mp4 gif mp3 flac opus"
+fehFiles="png jpg jpeg jpe svg"
+
+if echo $fehFiles | grep -w $ext > /dev/null; then
+  nohup feh "$1" > /dev/null &
+elif echo $mpvFiles | grep -w $ext > /dev/null; then
+  nohup mpv --loop --quiet "$1" > /dev/null &
+else
+  nohup $BROWSER --new-tab "$1" > /dev/null &
+fi
