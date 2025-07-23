@@ -2,11 +2,14 @@
 
 "vim-plug {{{
 call plug#begin('~/.vim/plugged')
-	Plug 'kien/ctrlp.vim'
 	Plug 'vim-airline/vim-airline'
 	Plug 'morhetz/gruvbox'
 	Plug 'hashivim/vim-terraform'
 	Plug 'machakann/vim-highlightedyank'
+	Plug 'vim-scripts/groovy.vim'
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
+	Plug 'tpope/vim-commentary'
 call plug#end()
 "}}}
 
@@ -29,21 +32,27 @@ set hlsearch
 set hidden
 set wrap
 set showcmd
+set splitright
+set splitbelow
 "}}}
 
 "Mappings {{{
+vnoremap : ;
+vnoremap ; :
 nnoremap : ;
 nnoremap ; :
-nnoremap <leader>sf :CtrlPCurWD<cr>
-nnoremap <leader>sb :CtrlPBuffer<cr>
-nnoremap <leader>s/ :CtrlPLine<cr>
-nnoremap <leader>sg :CtrlPSample<cr>
+nnoremap <C-j> <C-e>
+nnoremap <C-k> <C-y>
+nnoremap <silent> <leader>/ :set nohlsearch!<cr>
 nnoremap <silent> <leader>so :w<cr>:so<cr>:echo "Sourced"<cr>
-nnoremap <leader>/ :set nohlsearch!<cr>
 nnoremap <silent> <leader>qo :copen<cr>
 nnoremap <silent> <leader>qc :cclose<cr>
 nnoremap <silent> <leader>qj :cnext<cr>
-nnoremap <silent> leader>qk :cprev<cr>
+nnoremap <silent> <leader>qk :cprev<cr>
+nnoremap <silent> <leader>bn :bn<cr>
+nnoremap <silent> <leader>bp :bp<cr>
+nnoremap <silent> <leader>bd :bd<cr>
+nnoremap <silent> <leader>le :25Lex<cr>
 "}}}
 
 let g:ctrlp_extensions = ['sample']
@@ -75,20 +84,37 @@ colorscheme gruvbox
 let g:highlightedyank_highlight_duration = 100
 "}}}
 
-" Map a key (e.g., <leader>p) to trigger the prompt and echo the input
-nnoremap <leader>p :call PromptAndEcho()<CR>
+"groovy setup {{{
+au BufNewFile,BufRead *.Jenkinsfile,*.groovy setf groovy
 
-" Function to prompt the user and echo the input
-function! PromptAndEcho()
-  echohl SpecialKey
-  let user_input = input(">>> ")
-  echohl None
-  redraw!
+if did_filetype()
+  finish
+endif
+if getline(1) =~ '^#!.*[/\\]groovy\>'
+  setf groovy
+endif
+"}}}
 
-  if user_input == ""
-    return
-  endif
+"fzf setup {{{
+nnoremap <leader>sf :Files<cr>
+nnoremap <leader>sb :Buffers<cr>
+nnoremap <leader>s/ :Lines<cr>
+nnoremap <leader>sg :Rg<cr>
+nnoremap <leader>sh :Helptags<cr>
 
-  execute 'silent grep! -r ' . shellescape(user_input) . ' .' | copen
-endfunction
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+"}}}
 
