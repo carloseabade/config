@@ -1,9 +1,47 @@
 [user]
 	email = carloseabade@gmail.com
 	name = Carlos Abade
-[pull]
-	rebase = false
-[init]
-	defaultBranch = main
+	signingkey = 63A44F456BD1CCA5E1BCC487AE955F6D837EA16A
 [core]
-	editor = vim
+	editor = nvim
+	longpaths = true
+	autocrlf = false
+[pull]
+	rebase = true
+[branch]
+	autosetuprebase = always
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = master
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential]
+	helper = store --file ~/.git-credentials
+[alias]
+    toggleuser = "!f() { \
+	CURRENT_KEY=$(git config --global user.signingkey); \
+	OBJ_KEY='3D2EFAC97F5A12E740ACCB6053B8BCFA8D2D763E'; \
+	OBJ_EMAIL='carlos.abade@objective.com'; \
+	PERSONAL_KEY='63A44F456BD1CCA5E1BCC487AE955F6D837EA16A'; \
+	PERSONAL_EMAIL='carloseabade@gmail.com'; \
+        if [ \"$CURRENT_KEY\" = \"$OBJ_KEY\" ]; then \
+		CURRENT_KEY=\"$PERSONAL_KEY\"; \
+		CURRENT_EMAIL=\"$PERSONAL_EMAIL\"; \
+		git config --global user.signingkey \"$PERSONAL_KEY\"; \
+		git config --global user.email \"$PERSONAL_EMAIL\"; \
+        elif [ \"$CURRENT_KEY\" = \"$PERSONAL_KEY\" ]; then \
+		CURRENT_KEY=\"Objective key: $OBJ_KEY\"; \
+		CURRENT_EMAIL=\"$OBJ_EMAIL\"; \
+		git config --global user.signingkey \"$OBJ_KEY\"; \
+		git config --global user.email \"$OBJ_EMAIL\"; \
+	else \
+		echo \"Warning: SigningKey was probably set manually.\"; \
+		echo \"Error: Current SigningKey ($CURRENT_KEY) was not toggled\"; \
+		exit 1; \
+        fi; \
+	echo \"Toggled to $CURRENT_EMAIL ($CURRENT_KEY)\"; \
+    }; f"

@@ -224,7 +224,7 @@ bindsym $mod+Shift+p sticky toggle
 for_window [instance="Toolkit" class="firefox"] sticky enable
 
 # Automatically pin and floating window
-for_window [instance="gl" class="mpv"] floating enabled
+for_window [instance="gl" class="mpv"] floating enable
 for_window [instance="gl" class="mpv"] sticky enable
 
 bindsym $mod+Shift+w exec --no-startup-id i3-msg 'workspace 2; exec firefox; workspace 3; exec chromium & slack; workspace 4; exec obsidian; workspace 2'
@@ -232,3 +232,4 @@ bindsym $mod+Shift+w exec --no-startup-id i3-msg 'workspace 2; exec firefox; wor
 # To get the class and instance, you can use xprop. After clicking on the window, you will see the following output:
 # WM_CLASS(STRING) = "irssi", "URxvt"
 # The first part of the WM_CLASS is the instance ("irssi" in this example), the second part is the class ("URxvt" in this example).
+for_window [instance="workspacesclient" class="Workspacesclient"] floating disable
