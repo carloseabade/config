@@ -21,8 +21,6 @@ alias journal="nvim /d/Users/o-eduard/Documents/tasks/journal"
 # Directories
 alias dox="cd ~/Documents"
 alias dl="cd ~/Downloads"
-alias tasks="cd ~/obj/tasks"
-alias repos="cd ~/repos/obj"
 
 # Others
 alias tf="terraform"
