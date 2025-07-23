@@ -113,7 +113,7 @@ rbashrc() {
 }
 
 tasks() {
-  cd "$(du ~/Documents/tasks/ | cut -f2 | fzf)"
+  cd "$(ls -d ~/Documents/tasks/*/ | fzf)"
 }
 
 gk() {
@@ -121,7 +121,7 @@ gk() {
 }
 
 repos() {
-  cd "$(du -d 2 ~/repos/ | cut -f2 | fzf)"
+  cd "$(ls -d ~/repos/*/*/ | fzf)"
 }
 
 new-task() {
